@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?php echo $titr; ?></title>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<link rel="stylesheet" type="text/css" href="styles/jquery-ui-1.8.14.css" />
+<link rel="stylesheet" type="text/css" href="styles/easyui.css">
+<link rel="stylesheet" type="text/css" href="styles/easyui-rtl.css"> 
+<script type="text/javascript" src="scripts/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/easyui-rtl.js"></script> 	
+<script type="text/javascript" src="scripts/jquery.ui.datepicker-cc.all.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.table2excel.js"></script>
+<script type="text/javascript" src="functions.js"></script>
+<style>
+       @media screen
+       {
+           .hideatprint
+           {
+           }
+       }
+       @media print
+       {
+           .hideatprint
+           {
+               display: none;
+           }
+       }
+</style>
+<script type="text/javascript">
+$(function(){	    
+    $("#datepickerfrom").datepicker({
+	    defaultDate:"<?php $today ?>",
+		showOn: "button",
+        buttonImage: "styles/images/calendar5.png",
+        buttonImageOnly: true,
+		showButtonPanel: true,
+		changeMonth: true,
+	    changeYear: true,
+	  onSelect: function(dateText, inst){
+	  $("#datepickerto").datepicker("option", "minDate", new JalaliDate(inst["selectedYear"], inst["selectedMonth"], inst["selectedDay"]));
+	   }
+	  });
+	  $("#datepickerto").datepicker(
+	  { 
+	    defaultDate:"<?php $today ?>",
+		showOn: "button",
+        buttonImage: "styles/images/calendar5.png",
+        buttonImageOnly: true,
+		showButtonPanel: true,
+		changeMonth: true,
+	    changeYear: true
+		}
+	  );
+	  //خروجی اکسل
+      $("#exportExcel").click(function(){
+		  		$(".table2excel").table2excel({
+		  			exclude: ".noExl",
+		  			name: "Excel Document Name",
+		  			filename: "<?php echo $titr; ?>",
+		  			fileext: ".xls",
+		  			exclude_img: true,
+		  			exclude_links: true,
+		  			exclude_inputs: true
+		  		});
+	    });	  
+});
+</script> 
+</head>

@@ -1,0 +1,191 @@
+@CHARSET "UTF-8";
+@media all
+{
+page-break { display:none; }
+}
+ 
+@media print
+{
+page-break { display:block; page-break-before:always; }
+}
+table{border-collapse:collapse;border-spacing:0;border-radius:15px;}
+body{
+   background-image: url(../images/back.PNG);
+	
+    background-attachment:fixed;
+	direction: rtl;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family:sans-serif,tahoma ,arial,sans-serif;
+	line-height: 1.22em;
+	font:13px tahoma,arial,helvetica,clean,sans-serif;font-size:small;
+	
+	
+}
+  body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
+    margin: 0;
+    padding: 0.5;
+}
+table{
+
+border:hidden;
+ border:0px solid #BBB;
+ font-family: Times, serif;
+ border-radius:17px;
+
+ }
+ input{
+  border:1px solid #DDD;
+ width:50%;
+ }
+.nasi{
+
+text-align:center;
+background-color:#FFFFFF;
+margin-top:20px;
+border:0px solid #DDD;
+vertical-align:center;
+margin-left:auto;
+margin-right:auto;
+margin-top:25px;
+font-family: Times, serif;
+-moz-border-radius:17px ;
+
+}
+table.nasi tr td{
+	background-color:#6A000;
+	border:4px;
+	margin-right:100px;
+	-moz-border-radius:17px ;
+
+}
+ 
+.table{
+text-align:right;
+background-color:#CCCCCC;
+margin-top:20px;
+text-align:right;
+border:0px solid #DDD;
+vertical-align:center;
+margin-left:auto;
+margin-right:auto;
+margin-top:25px;
+font-family:sans-serif,Arial, Helvetica, sans-serif;
+
+}
+
+.tblMain{
+	width:100%;
+	
+}
+.tblMain td{
+	vertical-align: top;
+}
+tblSec{
+	height: 50px;
+}
+
+a{ 
+color:blue;
+
+}
+/*table List Css*/
+table.list{
+       width:100%;
+       margin-top:5px;
+       padding-top:20px;
+       border:0px solid #BBB;
+       margin-top:20px;
+       font-family: serif,Times,Arial,Times, serif;
+       -moz-border-radius:17px ;
+      
+     
+}
+
+.wrapper {
+	background-color: #CCFFFF;
+	width: 400px;
+	height: 20px;
+	overflow: auto;
+}
+
+.md_developer table.list{
+       margin:2px 0 0 0;
+       
+}
+
+
+table.list tr.frstRw{
+       background-color:#EEF;
+       
+}
+
+table.list tr.frstRw td{
+       text-align:center;
+       vertical-align:middle;
+       
+}
+
+table.list tr td.tls{/*Tools*/
+       text-align:center;
+       vertical-align:middle;
+      
+}
+
+table.list tr td.chk{/*CheckBox Column*/
+       text-align:center;
+       vertical-align:middle;
+}
+
+table.list tr.rw1, r1{
+       background-color:#FFFFFF ;
+       vertical-align:middle;
+}
+table.list tr.rw3, r3{
+       background-color:#EDCEE2 ;
+       vertical-align:middle;
+}
+table.list textarea, select, input.chk{
+ border:1px solid #DDD;
+ width:50%;
+
+}
+table.list tr.rw0, r0{
+       background-color:#BBF0F7 ;
+       vertical-align:middle;
+}
+/*baraye hover table*/
+table.list tr.rw1:hover,table.list tr.rw0:hover{
+       background-color:#B1C9D5;
+}
+
+table.list tr.gry{
+       background-color:#DDD;
+}
+table.list{
+       width:100%;
+       margin-top:5px;
+       border:0px solid #BBB;
+       -moz-border-radius: 20px; 
+         
+}
+
+#hcss{
+       border-top-width: 1px;
+       border-right-width: 1px;
+       border-bottom-width: 1px;
+       border-left-width: 1px;
+       border-top-style: solid;
+       border-right-style: solid;
+       border-bottom-style: solid;
+       border-left-style: solid;
+       border-top-color: #000000;
+       border-right-color: #000000;
+       border-bottom-color: #000000;
+       border-left-color: #000000;
+}
+.search{
+	background-image: url(images/button1.gif);
+	}

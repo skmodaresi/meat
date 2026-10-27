@@ -1,0 +1,105 @@
+<?php
+session_start();
+error_reporting(0);
+include ("config.php");
+foreach($_POST as $k=>$v) ${$k}=$v;
+foreach($_GET as $k=>$v) ${$k}=$v;
+if (!PassTru()) echo "<script>parent.location.href='mainpage.php'</script>";
+$FileName="revoke_resid_webservice_v2.php";
+echo'
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+<html xmlns="http://www.w3.org/1999/xhtml" dir=rtl>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>ابطال رسید</title>
+<link href="styles.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="functions.js"></script>
+<link type="text/css" href="styles/jquery-ui-1.8.14.css" rel="stylesheet" />
+<script type="text/javascript" src="scripts/jquery-1.6.2.min.js"></script>
+</head>';
+/***************************************** MAIN*****************************************/
+echo'
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" onload="document.myform.sal_mabda.focus();">
+<form method="POST" name="myform">
+<div align="center">
+<table width="100%" height="100%" align="center" cellpadding="0" cellspacing="0">
+ <tr>
+  <td height="100%">
+   <div style="float:right;width:100%;margin:0px;height:100%;overflow:auto;overflow-x:hidden;">
+   <table width="600px" border="0" align="center" cellpadding="0" cellspacing="0" >
+    <tr><td colspan="4" height="20px">&nbsp;</td></tr>
+	<tr><td colspan="4" class="title">ابطال رسید</td></tr>
+    <tr class="tr1"><td colspan="4" height="60px"><input class="buttonme" type="submit" name="transfer" value="transfer resid"></td></tr> 
+    <tr class="footer"><td colspan="4">&nbsp;</td></tr>
+   </table>
+   </div>
+  </td>
+ </tr>	
+</table>
+</div>';
+//////////////////////////////////////////////////////////////////////////////////////////////
+if(isset($transfer))
+{
+
+ $q_resid="SELECT * From resid r INNER JOIN list_sardkhane l_s ON r.code_ostan=l_s.code_ostan AND r.code_anbar=l_s.code_anbar
+	       WHERE r.code_ostan=1 and r.code_anbar=102 and r.shomare_resid='00034'  and year=$mtActiveYear AND sabt_nahayi=1 AND status=1 AND r.code_anbar!=301 AND situation_type=1 AND l_s.activate=1 AND chkwebservice=1 AND warehouse_id IS NOT NULL";
+
+ //echo $q_resid;
+ $res_resid = mysql_query($q_resid);	
+ while($row_resid=$db->fetch_assoc($res_resid))
+ {   
+  $warehouse_id=$db->get_from_where("warehouse_id","list_sardkhane","code_ostan=".$row_resid['code_ostan']." AND code_anbar=".$row_resid['code_anbar']."");     
+  if(strlen($row_resid['code_ostan'])==1) $code_a=make_pattern($row_resid['code_ostan'],2);
+  else $code_a=$row_resid['code_ostan'];
+  $shomareGhabz=$mtActiveYear.$code_a.$row_resid['code_anbar'].$row_resid['shomare_resid'];
+
+  $wsdl_url='http://10.7.234.33/anbar/warehouse.asmx?wsdl';
+  header('Content-Type: text/html; charset=utf-8');
+  try
+	{
+	  $client=new SoapClient($wsdl_url);
+	  $params=array(
+          'username'=>'02',
+          'password'=>'HJ78mnGD',
+          'type'=>'in',
+          'company_nationalID'=>'14002771736',
+          'warehouse_id'=>$warehouse_id,
+          'number'=>$shomareGhabz
+		  
+		); 
+	   echo '<pre>'; print_r($params); echo '</pre>';
+	   
+	   
+	  $result=$client->RevokeWarehouseDocument($params); 
+	  $response=$result->RevokeWarehouseDocumentResult;
+	  $webservice_error_code =$response->ErrorCode;
+	  $webservice_error_message =$response->ErrorMessage;
+	  $webservice_status =$response->status;
+	  $webservice_number =$response->number;
+      
+	  echo '<br>';
+	  echo 'ErrorCode: ';print_r($response->ErrorCode);echo'<br>';
+      echo 'ErrorMessage: ';print_r($response->ErrorMessage);echo'<br>';
+      echo 'Type: ';print_r($response->Type);echo'<br>';
+      echo 'warehouse_id: ';print_r($response->warehouse_id);echo'<br>';
+      echo 'number: ';print_r($response->number);echo'<br>';
+      echo 'status: ';print_r($response->status);echo'<br>';
+
+	}
+	// catch(SoapFault $client)
+	catch(Exception $e)
+	{
+		 echo "<script>alert('وب سرویس فعال نمی باشد')</script>";
+		 echo  $e->getMessage();
+	}
+	$update_track=("UPDATE resid SET webservice_error_code='$webservice_error_code',webservice_error_message='$webservice_error_message',webservice_status='$webservice_status',webservice_number='$webservice_number' WHERE code_ostan=".$row_resid['code_ostan']." AND code_anbar=".$row_resid['code_anbar']." AND shomare_resid='".$row_resid['shomare_resid']."' AND year=$mtActiveYear");
+	$update_res=mysql_query($update_track);    
+ }
+ //end while	  
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+echo'
+</form>
+</body>
+</html>';	
+?>
