@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 //کد کالای 266 معادل مرغ منجمدکارتنی داخلی امانی در این گزارش حساب نشود
 session_start();
 error_reporting(0);

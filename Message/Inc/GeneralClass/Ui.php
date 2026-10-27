@@ -6,7 +6,7 @@ class Ui{
 	var $BoObj;
 	var $Path;
 	var $RefClass;
-	function Ui( $_BoName, $_Path ){
+	function __construct( $_BoName, $_Path ){
 		$this->BoName = $_BoName;	
 		$this->Path = $_Path;
 	}

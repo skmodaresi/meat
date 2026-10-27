@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../mysql_compat.php';
 //$myconn = mysql_connect( "localhost" , "user" , "");
 $myconn = mysql_connect( "localhost" , "user" , "xlsdj@#@aHdF");
 mysql_query("SET NAMES 'utf8'",$myconn);

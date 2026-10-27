@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 ini_set('max_execution_time',300);
 session_start();
 error_reporting(0);

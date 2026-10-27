@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 // session_destroy();
 // session_unset();
 session_start();

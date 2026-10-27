@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 include ("../config.php");
 if(!isset($_REQUEST['code_keshvar']))
 {

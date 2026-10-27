@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 session_start();
 include ("config.php");
 foreach($_POST as $k=>$v) ${$k}=$v;

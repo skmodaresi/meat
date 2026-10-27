@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../mysql_compat.php';
 function dsppHavaleFrm(){
 	
 	$query = " SELECT *  FROM dm_pish_havale_det 			 

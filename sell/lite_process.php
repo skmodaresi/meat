@@ -35,7 +35,7 @@ if(isset($_POST['Email_Address'])) {
 	
 	$error_message = "";
 	$email_exp = "^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$";
-  if(!eregi($email_exp,$email_from)) {
+  if(!preg_match('/'.$email_exp.'/i',$email_from)) {
   	$error_message .= 'The Email Address you entered does not appear to be valid.<br />';
   }
   if(strlen($full_name) < 2) {

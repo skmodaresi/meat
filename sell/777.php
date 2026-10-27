@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 include_once 'includer.php';
 
 $norozdate='2016-03-19';

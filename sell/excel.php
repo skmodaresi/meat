@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 
 //--------------------------------------------------------------------------
 // This is where you specify your Database connection stuff

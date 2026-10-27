@@ -1,4 +1,5 @@
                <?php
+require_once __DIR__ . '/mysql_compat.php';
                    $con = mysql_connect('localhost','root','');
                    if(!$con) { echo "Cannot connect to the database ";die();}
                    mysql_select_db('meat');

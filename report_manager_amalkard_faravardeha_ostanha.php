@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 ini_set('max_execution_time', '0');
 //این گزارش برای سایر کاربران در لوکال به خاطر وجود کوئری های فروش اررور دارد در هاست درست است
 session_start();

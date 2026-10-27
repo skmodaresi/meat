@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 //این گزارش در هاست با اتصال به فروش نوشته شده
 session_start();
 error_reporting(0);

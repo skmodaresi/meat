@@ -70,7 +70,7 @@ echo'
 	 <td width="70%">محل دسترسی</td>
 	</tr>';
     for($i=1;$i<=count($axarr);$i++) $tm[$i]=$axarr[$i][1];
-    asort($tm);reset($tm); while (list ($key, $val) = each ($tm)) {}
+    // PHP 8 removed each(); this loop only walked the internal array pointer,\n    // which foreach() below does not depend on. end() puts the pointer at the\n    // last element, matching the old end state closely.\n    asort($tm); end($tm);
     $axarr_1=$axarr;
     if($sort=='code') $axarr_1=$tm;
     //$strategics=Array(38,53,54,55,56,57,58,59,63,85,86,87,88,89,90,94,108,143,144,145,167,168);

@@ -6,6 +6,7 @@
   <body style="background-image: url(images/ebtal.PNG);background-position:center;background-attachment:fixed;background-repeat:no-repeat;"></body>
 
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
  header('Content-Type: text/html; charset=UTF-8');
 
 include_once 'lib/php/jdf.php';

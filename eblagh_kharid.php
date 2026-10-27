@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 //ALTER TABLE `eblagh_kharid` ADD `gosht_type` TINYINT( 1 ) NULL AFTER `code_group_kala_top` 
 session_start();
 error_reporting(0);

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 backup_tables( '192.168.254.16', 'root', 'xlsdj110','sell');
 error_reporting(0);
 
@@ -44,7 +45,7 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
         for($j=0; $j<$num_fields; $j++)
         {
           $row[$j] = addslashes($row[$j]);
-          $row[$j] = ereg_replace("\n","\\n",$row[$j]);
+          $row[$j] = str_replace("\n","\\n",$row[$j]);
           if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
           if ($j<($num_fields-1)) { $return.= ','; }
         }

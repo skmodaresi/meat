@@ -1,7 +1,9 @@
 ﻿ <script type="text/javascript" src="lib/js/general.js"></script>
  <script type="text/javascript" language="" src="lib/js/jquery-1.2.6.min.js"></script>
 
-<?php 
+<?php
+require_once __DIR__ . '/../mysql_compat.php';
+ 
 	
 $_SESSION['codeprice']='';
  header('Content-Type: text/html; charset=UTF-8');

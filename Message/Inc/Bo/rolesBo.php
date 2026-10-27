@@ -7,7 +7,7 @@
 		var $role_id;
 		var $role_description;
 		var $chk_adminsee;
-		function roles(){
+		function __construct(){
 			$this->KeyName="role_id";
 			$this->BoName="roles";
 			$this->TableName="roles";

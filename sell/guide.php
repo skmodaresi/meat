@@ -4,6 +4,7 @@
    <script type="text/javascript" src="jquery-1.2.3.pack.js"></script> 
 </head> 
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 
 /*ebh_type=1 yani kole havale ebtal shode
 pas ebh_h_id=h_id bode

@@ -14,7 +14,7 @@
 		var $comment_date_send_miladi;
 		var $comment_time_send;
 		var $comment_read;		
-		function comments(){
+		function __construct(){
 			$this->KeyName="comment_id";
 			$this->BoName="comments";
 			$this->TableName="comments";

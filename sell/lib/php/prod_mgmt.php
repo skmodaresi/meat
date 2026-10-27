@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once __DIR__ . '/../../../mysql_compat.php';
+ 
 //$GLOBALS['access_allow'] = array(1,5,10,15);
 function regProd1(){
 	echo $_SESSION['prodSave'];
@@ -10915,7 +10917,7 @@ function getNameProvinceCombooo($id='NameProvinceCombo1', $sCust=false){
 	$out .= '</select>';
 	return $out;
 }
-function getNameYearCombo($id='NameYearCombo', $u_year_id){ 
+function getNameYearCombo($id, $u_year_id){ 
 	
 	$u_id = isset($_REQUEST['u_id']) ? (int)($_REQUEST['u_id']) : '';
 	$lnk = mysql_query("SELECT * FROM dm_user_profile where u_id=".$u_id."");

@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once __DIR__ . '/../mysql_compat.php';
+ 
 $myconn = mysql_connect( "localhost" , "root" , "xlsdj110");
 mysql_query("SET NAMES 'utf8'",$myconn);
 mysql_select_db("sell",$myconn) or die("Can Not Select DataBase Because: ".
@@ -30,4 +32,5 @@ mysql_error());
 						print $query;
 			
 		
+		}
 		}

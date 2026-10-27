@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once __DIR__ . '/../../mysql_compat.php';
+ 
     header('Content-Type: text/html; charset=UTF-8');
 	global $pg, $cmd;
 //	if(isset($_REQUEST['pg'])){

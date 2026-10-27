@@ -1,6 +1,7 @@
  <script type="text/javascript" src="lib/js/general.js"></script>
  <script type="text/javascript" language="" src="lib/js/jquery-1.2.6.min.js"></script>
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
  header('Content-Type: text/html; charset=UTF-8');
 include_once 'lib/php/db_connect.php';
 include_once 'lib/php/gen_def.php';

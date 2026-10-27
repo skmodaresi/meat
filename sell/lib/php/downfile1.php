@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../mysql_compat.php';
 include_once 'jdf.php';
 include_once 'db_connect.php';
     $doc_date = isset($_REQUEST['doc_date']) ? $_REQUEST['doc_date'] : '';

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 //برای حالت اتصال به سیستم فروش تهیه شد اتصال به سردخانه را ننوشتم
 session_start();
 error_reporting(0);

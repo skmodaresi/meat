@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once __DIR__ . '/../../../mysql_compat.php';
+ 
 include_once 'db_connect.php';
  
 $GLOBALS['isDevelopeMode'] = true;
@@ -48,7 +50,7 @@ function inserterQMaker($tableName, $query){
 	}
 	return $out;
 }
-function getProvinceCombox($id='customer_cusid_province', $customer_cusid_province,$customer_id){
+function getProvinceCombox($id, $customer_cusid_province,$customer_id){
 
 //	if($customer_cusid_province==0){ onchange="hndlProvince_cityCombo(\'\', this.value,'.$customer_id.')
 	$out = '<select id="'.$id.'" name="'.$id.'" >';
@@ -64,7 +66,7 @@ function getProvinceCombox($id='customer_cusid_province', $customer_cusid_provin
 	return $out;
 }
 
-function getcitybox($id='city_id',$city_id){
+function getcitybox($id,$city_id){
 	
 	
 if($city_id==0 or $city_id==''){
@@ -99,7 +101,7 @@ if($city_id==0 or $city_id==''){
 	
 	
 }
-function getProvinceCombox1($id='customer_cusid_province', $province_id){
+function getProvinceCombox1($id, $province_id){
 
 //	if($customer_cusid_province==0){
 	$out = '<select id="'.$id.'" name="'.$id.'" onchange="hndlProvince_cityCombo1(\'\', this.value)"><option value=""> استان را انتخاب كنيد</option>';
@@ -1220,7 +1222,7 @@ function logout(){
 	
 }
 
-function getTypeslocComboBox($id='l_type', $l_type)
+function getTypeslocComboBox($id, $l_type)
 {
 	
 		if($l_type==0){
@@ -1251,7 +1253,7 @@ function getTypeslocComboBox($id='l_type', $l_type)
 }
 
 
-function getPkgTypesComboBox($id='p_pakage_type', $p_pakage_type){
+function getPkgTypesComboBox($id, $p_pakage_type){
 	
 	if($p_pakage_type==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
@@ -1334,7 +1336,7 @@ function getPkgTypesComboBoxr($id='p_pakage_type', $sCust=false){
 	$out .= '</select>';
 	return $out;
 }
-function getdocTypesComboBox($id='d_documentType', $d_documentType){
+function getdocTypesComboBox($id, $d_documentType){
 	
 	$lnk1 = mysql_query("SELECT * FROM dm_doc_det_t where doc_t_id_province=".$_SESSION['dm_user_profile']['u_province_id']." AND doc_t_id=".$d_documentType."");
 	$row1=mysql_fetch_assoc($lnk1);
@@ -1381,7 +1383,7 @@ function  getbankTypesComboBox($id='phm_op_id', $sCust=false){
 	$out .= '</select>';
 	return $out;
 }
-function  getopTypesComboBox($id='phm_op_id', $g_id){
+function  getopTypesComboBox($id, $g_id){
 	
 	$lnk1 = mysql_query("SELECT * FROM dm_operation_acc where g_id=".$g_id." ");
 	//print "SELECT * FROM dm_operation_acc where g_id=".$g_id."";
@@ -1421,7 +1423,7 @@ function  getopTypesComboBoxj($id='phm_op_idj'){
 	$out .= '</select>';
 	return $out;
 }
-function getUnitTypesComboBox($id='p_unit', $p_unit){
+function getUnitTypesComboBox($id, $p_unit){
 	
 //	if($p_unit==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
@@ -1452,7 +1454,7 @@ function getUnitTypesComboBox($id='p_unit', $p_unit){
 
 
 
-function getTypesComboBox($id='p_type', $p_type){
+function getTypesComboBox($id, $p_type){
 			
 	if($p_type==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
@@ -1493,7 +1495,7 @@ function getTypesComboBoxr($id='p_type', $sCust=false){
 }
 
 
-function getCategoryTypesComboBox($id='p_category', $p_category){
+function getCategoryTypesComboBox($id, $p_category){
 	
 	if($p_category==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
@@ -1534,7 +1536,7 @@ function getCategoryTypesComboBoxrr($id='phm_type_id', $sCust=false){
 	$out .= '</select>';
 	return $out;
 }
-function getCategoryTypesComboBoxr($id='p_category', $phm_type_id){
+function getCategoryTypesComboBoxr($id, $phm_type_id){
 	if(($phm_type_id==0) or ($phm_type_id=='')){
 		
 	$out = '<select id="'.$id.'" name="'.$id.'"  ><option value="-2">همه</option>';
@@ -1759,7 +1761,7 @@ function getRedundancyTypesComboBox($elmName='', $selectedItem=0){
 }
 
 
-function getSubsidiesTypesComboBox($id='p_subsidies', $p_subsidies){
+function getSubsidiesTypesComboBox($id, $p_subsidies){
 	
 	if($personality_customer==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
@@ -1954,7 +1956,7 @@ function  getFactorTypesComboBox($elmName='', $selectedItem=0){
 
 //اطلاعات مشتريان
 
-function getShareTypesComboBox($id='condition_share_customer', $condition_share_customer){
+function getShareTypesComboBox($id, $condition_share_customer){
 	
 	//if($condition_share_customer==0){
 		
@@ -1982,7 +1984,7 @@ function getShareTypesComboBox($id='condition_share_customer', $condition_share_
 	$out .= '</select>';
 	return $out;
 }
-function getPayTypesComboBox($id='condition_pay_customer', $condition_pay_customer){
+function getPayTypesComboBox($id, $condition_pay_customer){
 	if($condition_pay_customer==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
 		$lnk = mysql_query("SELECT * FROM  dm_customer_pay_t   ORDER BY 	cus_pay_name");
@@ -2008,7 +2010,7 @@ function getPayTypesComboBox($id='condition_pay_customer', $condition_pay_custom
 	return $out;
 }
 
-function getActivityTypesComboBox($id='condition_activity_customer', $condition_activity_customer){
+function getActivityTypesComboBox($id, $condition_activity_customer){
 
 	if($condition_activity_customer==0){
 		
@@ -2036,7 +2038,7 @@ function getActivityTypesComboBox($id='condition_activity_customer', $condition_
 	$out .= '</select>';
 	return $out;
 }
-function getPersonalityTypesComboBox($id='personality_customer', $personality_customer){
+function getPersonalityTypesComboBox($id, $personality_customer){
 	
 	if($personality_customer==0 or $personality_customer==-2){
 		$out = '<select id="'.$id.'" name="'.$id.'"  ><option value="-2" > همه </option>';
@@ -2075,7 +2077,7 @@ function gettypeCustomerNameCombo($id='personality_customer', $sCust=false){
 	$out .= '</select>';
 	return $out;
 }
-function getCustomerTypesComboBox($id='type_customer', $category_id){
+function getCustomerTypesComboBox($id, $category_id){
 	if($category_id==0){
 		
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';
@@ -2100,7 +2102,7 @@ function getCustomerTypesComboBox($id='type_customer', $category_id){
 	$out .= '</select>';
 	return $out;
 }
-function getActivityDifTypesComboBox($id='type_activity_customer', $type_activity_customer){
+function getActivityDifTypesComboBox($id, $type_activity_customer){
 	
 	if($type_activity_customer==0){
 		$out = '<select id="'.$id.'" name="'.$id.'"  >';

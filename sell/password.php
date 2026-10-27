@@ -1,5 +1,6 @@
 
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 
 include_once 'includer.php';
 $query = "SELECT * FROM  dm_user_profile   ";	

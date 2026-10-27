@@ -21,7 +21,7 @@
 		///////////////
 		var $user_sender;
 		var $user_reciever;
-		function users(){
+		function __construct(){
 			$this->KeyName="user_id";
 			$this->BoName="users";
 			$this->TableName="users";

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 session_start();
 error_reporting(0);
 include "config.php";

@@ -1,5 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<?php 
+<?php
+require_once __DIR__ . '/../mysql_compat.php';
+ 
  header('Content-Type: text/html; charset=UTF-8');
 $myconn = mysql_connect( "localhost" , "user" , "xlsdj@#@aHdF");
 //mysql_query("SET NAMES 'windows-1256'",$myconn);	

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 session_start();
 //error_reporting(0);
 include ("config.php");
@@ -583,7 +584,7 @@ order by code_ostan , tarikh_gharardad
 	   <td class="mazad">'.number_format(round($jame_mazad_gharardad,3),3).'</td>
 	   <td class="vazngharardadbaelhaghie">'.number_format(round($jam_meghdar_gharardad_va_mazad,3),2).'</td>
 	   <td class="lastprice"></td>
-	   <td class="mablaghkolgharardad">'.number_format(round($jam_kol_gharardadha,3)).'<br>'. number_format(round($jam_kol_gharardadha_jadid,3).'</td>
+	   <td class="mablaghkolgharardad">'.number_format(round($jam_kol_gharardadha,3)).'<br>'. number_format(round($jam_kol_gharardadha_jadid,3)).'</td>
 	   <td class="mizanetebar">'.number_format(round($jam_kol_tamin_etebar,3)).'</td>
 	   <td class="koltahvily">'.number_format(round($jam_resid,3),3).'</td>
 	   <td class="vaznpardakhtshode">'.number_format(round($jam_vazn_pardakht_shode,3),3).'</td>

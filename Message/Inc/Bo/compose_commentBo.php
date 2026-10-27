@@ -14,7 +14,7 @@
 		var $comment_read;
 		var $delete_reciever;	
 	    var $delete_sender;		
-		function compose_comment(){
+		function __construct(){
 			$this->KeyName="comment_id";
 			$this->BoName="compose_comment";
 			$this->TableName="comments";

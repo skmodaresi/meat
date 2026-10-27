@@ -1,4 +1,5 @@
                <?php
+require_once __DIR__ . '/mysql_compat.php';
 				   include ("config.php");
 				   $q1="SELECT * From mt_typesign";
 	               $all = mysql_query($q1);

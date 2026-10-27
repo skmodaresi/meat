@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../mysql_compat.php';
 include_once 'includer.php';
  $query = "
 			UPDATE dm_year 

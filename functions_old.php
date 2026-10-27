@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 header('Content-Type: text/html; charset=UTF-8');
 /********** IP ************ */
 function GetRealIp()
@@ -22,17 +23,29 @@ function sanitizeString($var)
 }
 /********** Encode ************ */
 function encode($pure_string, $encryption_key) {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, md5(base64_encode(trim($encryption_key))), utf8_encode(trim($pure_string)), MCRYPT_MODE_ECB, $iv);
-        return base64_encode($encrypted_string);
+        // PHP 8: mcrypt was removed in PHP 7.2. AES-256-CBC is present on every
+        // PHP 8 build (Blowfish now needs OpenSSL's legacy provider), and the
+        // random IV travels with the ciphertext so decode() can reverse it.
+        // md5() already yields the 32 bytes AES-256 needs, so the key derivation
+        // is unchanged. The old utf8_encode() double-encoded already-UTF-8 text
+        // and was never undone by decode(), so it is dropped.
+        $key = md5(base64_encode(trim($encryption_key)));
+        $iv = random_bytes(16);
+        $encrypted_string = openssl_encrypt(trim($pure_string), 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+        if ($encrypted_string === false) {
+            return false;
+        }
+        return base64_encode($iv . $encrypted_string);
 }
 /********** Decode ************ */
      function decode($encrypted_string, $encryption_key) {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, md5(base64_encode(trim($encryption_key))),base64_decode(trim($encrypted_string)), MCRYPT_MODE_ECB, $iv);
-        return $decrypted_string;
+        $key = md5(base64_encode(trim($encryption_key)));
+        $raw = base64_decode(trim($encrypted_string), true);
+        if ($raw === false || strlen($raw) <= 16) {
+            return false;
+        }
+        $iv = substr($raw, 0, 16);
+        return openssl_decrypt(substr($raw, 16), 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
     }
 /********** Encode ************ */
 function encodePassword($pure_string,$string)
@@ -1438,7 +1451,7 @@ function customer($c_customer)
 }
 //توابع محاسبه موجودی فعلی براساس گروه کالا
 //موجودی تعداد براساس گروه کالا
-function mojodyGroupKarton($c_ostan='',$c_anbar='',$sal,$c_gr_kala)
+function mojodyGroupKarton($c_ostan,$c_anbar,$sal,$c_gr_kala)
 {
   $Condition='';
   if($c_ostan) $Condition.=" AND code_ostan='$c_ostan'";
@@ -1467,7 +1480,7 @@ function mojodyGroupKarton($c_ostan='',$c_anbar='',$sal,$c_gr_kala)
   return $tedadKartonGr;
 }
 //موجودی وزن ناخالص براساس گروه کالا
-function mojodyGroupNakhales($c_ostan='',$c_anbar='',$sal,$c_gr_kala)
+function mojodyGroupNakhales($c_ostan,$c_anbar,$sal,$c_gr_kala)
 {
   $Condition='';
   if($c_ostan) $Condition.=" AND code_ostan='$c_ostan'";
@@ -1496,7 +1509,7 @@ function mojodyGroupNakhales($c_ostan='',$c_anbar='',$sal,$c_gr_kala)
   return round($nakhalesGr,3);
 }
 //موجودی وزن خالص براساس گروه کالا
-function mojodyGroupKhales($c_ostan='',$c_anbar='',$sal,$c_gr_kala)
+function mojodyGroupKhales($c_ostan,$c_anbar,$sal,$c_gr_kala)
 {
   $Condition='';
   if($c_ostan) $Condition.=" AND code_ostan='$c_ostan'";
@@ -1630,7 +1643,7 @@ function mojodyKhales($c_ostan,$c_anbar,$sal,$c_ziranbar,$c_kala,$c_keshvar,$c_t
 }
 //توابع محاسبه موجودی فعلی براساس کد کالا
 //موجودی تعداد
-function mojodyKartonAll($c_ostan='',$c_anbar='',$sal,$c_kala)
+function mojodyKartonAll($c_ostan,$c_anbar,$sal,$c_kala)
 {
   $Condition='';
   if($c_ostan) $Condition.=" AND code_ostan='$c_ostan'";
@@ -1659,7 +1672,7 @@ function mojodyKartonAll($c_ostan='',$c_anbar='',$sal,$c_kala)
   return $tedadKarton;
 }
 //موجودی وزن ناخالص کالا
-function mojodyNakhalesAll($c_ostan='',$c_anbar='',$sal,$c_kala)
+function mojodyNakhalesAll($c_ostan,$c_anbar,$sal,$c_kala)
 {
   $Condition='';
   if($c_ostan) $Condition.=" AND code_ostan='$c_ostan'";
@@ -1688,7 +1701,7 @@ function mojodyNakhalesAll($c_ostan='',$c_anbar='',$sal,$c_kala)
   return round($nakhales,3);
 }
 //موجودی وزن خالص کالا
-function mojodyKhalesAll($c_ostan='',$c_anbar='',$sal,$c_kala)
+function mojodyKhalesAll($c_ostan,$c_anbar,$sal,$c_kala)
 {
   $Condition='';
   if($c_ostan) $Condition.=" AND code_ostan='$c_ostan'";

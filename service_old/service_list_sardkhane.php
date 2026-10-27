@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 include ("../config.php");
 $Data = array();
 IF(isset($_REQUEST['PageNo']) && isset($_REQUEST['RowPerPage']))//PageNo and RowPerPage isset

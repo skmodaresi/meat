@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/mysql_compat.php';
 /*حالت لوکال هاست را کامنت کردم*/
 session_start();
 error_reporting(0);

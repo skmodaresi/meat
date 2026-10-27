@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../../mysql_compat.php';
 function dsppHavaleFrm(){
 	
 	$query = " SELECT *  FROM dm_pish_havale_det 			 
@@ -501,7 +502,7 @@ global $general;
 }
 	
 
-function dspPreHavaleFrm2($custId, $cm_req_num,$cm_req_date, $custType='norm',$phm_id)
+function dspPreHavaleFrm2($custId, $cm_req_num,$cm_req_date, $custType,$phm_id)
 {
 	
   $_SESSION['codecus']='';

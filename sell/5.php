@@ -1,7 +1,9 @@
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-<?php 
+<?php
+require_once __DIR__ . '/../mysql_compat.php';
+ 
 $myconn = mysql_connect( "localhost" , "root" , "xlsdj110");
 mysql_query("SET NAMES 'utf8'",$myconn);
 mysql_select_db("sell",$myconn) or die("Can Not Select DataBase Because: ".

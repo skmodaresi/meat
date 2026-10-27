@@ -13,7 +13,7 @@ class Db {
 	private $Query;
 	private $Search;
 	private $RefClass;
-	function Db( $_BoObj, $_RefClass ) {
+	function __construct( $_BoObj, $_RefClass ) {
 		$this->BoObj = $_BoObj;
 		$this->RefClass = $_RefClass;
 		$this->CreateQuery();

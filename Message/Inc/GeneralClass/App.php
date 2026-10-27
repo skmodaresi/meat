@@ -4,7 +4,7 @@
 	class App{
 		var $BoObj;
 		var $RefClass;
-		function App($_BoObj,$_RefClass){
+		function __construct($_BoObj,$_RefClass){
 			$this->BoObj=$_BoObj;
 			$this->RefClass=$_RefClass;		  
 		}

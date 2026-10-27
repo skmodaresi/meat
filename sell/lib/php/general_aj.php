@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once __DIR__ . '/../../../mysql_compat.php';
+ 
 
 function addAProd2Bill(){
 //	print_r($_REQUEST);

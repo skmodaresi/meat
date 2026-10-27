@@ -7,6 +7,7 @@
       }
     </style>
 <?php
+require_once __DIR__ . '/../../mysql_compat.php';
 
 	include_once '../lib/php/jdf.php';
     include_once '../lib/php/db_connect.php';
@@ -708,4 +709,4 @@ if($report==1){
       
       from dm_havale h 
       left join dm_product p on h.h_p_code=p.p_code and h_id_province=".$province_id." 
-      left join d
+      left join d      "; // NOTE: this file is truncated in the repository (query string was never closed). See migration notes.

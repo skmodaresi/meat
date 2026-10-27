@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../mysql_compat.php';
 include ("../config.php");
 
 if(!isset($_REQUEST['sell_ostan']) || !isset($_REQUEST['sell_anbar']) || !isset($_REQUEST['sell_year']) || !isset($_REQUEST['sell_kala']) || !isset($_REQUEST['sell_shomare_havale']))
